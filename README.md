@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React va Tailwind CSS bilan yaratilgan shaxsiy portfolio.
 
-## Available Scripts
+## Ishga tushirish
 
-In the project directory, you can run:
+```bash
+npm start
+```
 
-### `npm start`
+Production build:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm run build
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tuzilishi
 
-### `npm test`
+```text
+public/
+  favicon.ico
+src/
+  assets/
+    images/
+      projects/
+    icons/
+  components/
+    Navbar.jsx
+    Hero.jsx
+    Skills.jsx
+    Animations.jsx
+    AvatarCard.jsx
+    Projects.jsx
+    Contact.jsx
+    Footer.jsx
+    animations/
+      AnimationOne.jsx
+      AnimationTwo.jsx
+      AnimationThree.jsx
+  App.jsx
+  main.jsx
+  index.css
+  index.js
+tailwind.config.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`src/components/Skills.jsx` ko'nikmalarni ikki tomonga cheksiz siljitadi. Scroll animatsiyalari `App.jsx` ichidagi `IntersectionObserver` orqali boshqariladi; harakatni kamaytirish sozlamasi yoqilgan bo'lsa, animatsiyalar o'chadi.
 
-### `npm run build`
+`src/components/Animations.jsx` CSS shakllarning uchishi, tushishi va aylanib dumalashini namoyish etadi. Navbar'da ushbu bo'limga o'tuvchi `#animations` havolasi bor.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Loyiha rasmlarini `public/assets/images/projects/project-1.jpg` kabi joylang, so'ng `src/components/Projects.jsx` ichidagi `projects` ro'yxatida sarlavha, tavsif va demo/GitHub URL qiymatlarini kiriting. URL bo'sh bo'lsa, karta havola tugmasi o'rniga eslatma ko'rsatadi.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`src/components/Contact.jsx` ichidagi `CONTACT_EMAIL` qiymatini o'zingizning haqiqiy emailingizga almashtiring. Forma xabarni foydalanuvchining email dasturida tayyorlaydi; yuborish email dasturidan tasdiqlanadi.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Styled Components loader animatsiyalari `src/components/animations/AnimationOne.jsx`, `AnimationTwo.jsx` va `AnimationThree.jsx` fayllarida. Ular `Animations.jsx` bo'limida ishlatiladi; uchinchi animatsiya yozuvini `<AnimationThree text="Developer" />` ko'rinishida almashtirish mumkin.
 
-### `npm run eject`
+Styled Components paketi `styled-components` hisoblanadi. Uchinchi animatsiyaning matnini `AnimationThree` komponentidagi `text` prop orqali, tezligini komponent ichidagi `3.2s` qiymati orqali o'zgartiring.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Rasm va ikon fayllarini `src/assets/images/` hamda `src/assets/icons/` papkalariga qo'shing. CRA uchun `src/index.js` kirish ko'prigi bo'lib, `src/main.jsx`ni yuklaydi.

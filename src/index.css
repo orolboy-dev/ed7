@@ -1,13 +1,396 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #080d18;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 80% 8%, rgb(37 99 235 / 13%), transparent 34rem),
+    radial-gradient(ellipse at 8% 60%, rgb(30 64 175 / 8%), transparent 28rem),
+    #080d18;
+}
+
+[data-tilt] {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition: transform 180ms ease-out;
+}
+
+.has-scroll-reveal [data-reveal]:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+[data-reveal],
+[data-reveal-left],
+[data-reveal-right] {
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.has-scroll-reveal [data-reveal-left]:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(-2.5rem);
+}
+
+.has-scroll-reveal [data-reveal-right]:not(.is-visible) {
+  opacity: 0;
+  transform: translateX(2.5rem);
+}
+
+.skills-marquee-track {
+  animation-duration: 36s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  will-change: transform;
+}
+
+.skills-marquee-left {
+  animation-name: skills-marquee-left;
+}
+
+.skills-marquee-right {
+  animation-duration: 42s;
+  animation-name: skills-marquee-right;
+}
+
+.skills-marquee:hover .skills-marquee-track {
+  animation-play-state: paused;
+}
+
+.typing-caret {
+  animation: typing-caret-blink 0.8s steps(2, start) infinite;
+}
+
+.animation-stage {
+  position: relative;
+  display: grid;
+  height: 12rem;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgb(37 99 235 / 12%), transparent 65%),
+    linear-gradient(135deg, rgb(15 23 42 / 95%), rgb(8 13 24 / 95%));
+}
+
+.animation-stage::before,
+.animation-stage::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgb(147 197 253 / 10%);
+  border-radius: 9999px;
+}
+
+.animation-stage::before {
+  width: 9rem;
+  height: 9rem;
+}
+
+.animation-stage::after {
+  width: 6rem;
+  height: 6rem;
+}
+
+.animation-shape {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  background: linear-gradient(135deg, #93c5fd, #3b82f6);
+  box-shadow: 0 0 24px rgb(59 130 246 / 35%);
+}
+
+.animation-shape-fly {
+  left: -2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  animation: shape-fly 4s ease-in-out infinite;
+}
+
+.animation-particle {
+  top: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.2rem;
+  animation: particle-fall 2.8s ease-in infinite;
+}
+
+.animation-particle-one {
+  left: 22%;
+  animation-delay: 0s;
+}
+
+.animation-particle-two {
+  left: 38%;
+  animation-delay: 0.5s;
+  background: #bfdbfe;
+}
+
+.animation-particle-three {
+  left: 53%;
+  animation-delay: 1s;
+}
+
+.animation-particle-four {
+  left: 68%;
+  animation-delay: 0.25s;
+  background: #dbeafe;
+}
+
+.animation-particle-five {
+  left: 82%;
+  animation-delay: 0.8s;
+}
+
+.animation-shape-roll {
+  left: 8%;
+  bottom: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid rgb(219 234 254 / 80%);
+  border-radius: 50%;
+  animation: shape-roll 4.5s ease-in-out infinite;
+}
+
+/* Kartochka glow animatsiyasi tezligini animation-glow-spin duration orqali o'zgartiring. */
+.animation-card-glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1.05rem;
+  padding: 1px;
+  background: rgb(147 197 253 / 15%);
+}
+
+.animation-card-glow::before {
+  position: absolute;
+  z-index: -1;
+  inset: -50%;
+  content: "";
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 285deg,
+    #3b82f6 315deg,
+    #fff 330deg,
+    #60a5fa 345deg,
+    transparent 360deg
+  );
+  animation: animation-glow-spin 4s linear infinite;
+}
+
+.animation-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #0f172a;
+}
+
+.animation-shape-pulse {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid #bfdbfe;
+  border-radius: 50%;
+  animation: animation-pulse 1.8s ease-in-out infinite;
+}
+
+.animation-tilt-stage {
+  perspective: 700px;
+}
+
+.animation-shape-tilt {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid rgb(219 234 254 / 80%);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgb(96 165 250 / 90%), rgb(30 64 175 / 60%));
+  transform: perspective(500px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition: transform 160ms ease-out;
+}
+
+.animation-glow-demo {
+  position: relative;
+  display: grid;
+  width: 8rem;
+  height: 4rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  padding: 1px;
+  background: rgb(96 165 250 / 25%);
+}
+
+.animation-glow-demo::before {
+  position: absolute;
+  inset: -120%;
+  content: "";
+  background: conic-gradient(
+    transparent 0deg 285deg,
+    #3b82f6 315deg,
+    #fff 330deg,
+    #60a5fa 345deg,
+    transparent 360deg
+  );
+  animation: animation-glow-spin 2.8s linear infinite;
+}
+
+.animation-glow-demo-inner {
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: 0.85rem;
+  background: #0f172a;
+  color: #dbeafe;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+/* Yangi animatsiyalar tezligini shu keyframes yuqorisidagi animation duration qiymatlaridan sozlang. */
+@keyframes animation-pulse {
+  0%,
+  100% {
+    transform: scale(0.75);
+    box-shadow: 0 0 12px rgb(59 130 246 / 45%);
+  }
+
+  50% {
+    transform: scale(1.25);
+    box-shadow:
+      0 0 24px rgb(59 130 246 / 80%),
+      0 0 50px rgb(147 197 253 / 40%);
+  }
+}
+
+@keyframes animation-glow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes skills-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes skills-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes typing-caret-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes shape-fly {
+  0% {
+    transform: translate(-2rem, 1.75rem) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(10rem, -1.75rem) rotate(180deg);
+  }
+
+  100% {
+    transform: translate(25rem, 0.75rem) rotate(360deg);
+  }
+}
+
+@keyframes particle-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -1rem, 0) rotate(0deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(2.5rem, 12rem, 0) rotate(300deg);
+  }
+}
+
+@keyframes shape-roll {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(11rem) rotate(360deg);
+  }
+
+  100% {
+    transform: translateX(22rem) rotate(720deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-tilt],
+  [data-reveal],
+  [data-reveal-left],
+  [data-reveal-right],
+  .skills-marquee-track,
+  .animation-shape,
+  .typing-caret,
+  .animation-card-glow::before,
+  .animation-glow-demo::before {
+    transition: none;
+    animation: none;
+  }
+
+  .animation-shape-pulse {
+    transform: none;
+    box-shadow: 0 0 18px rgb(59 130 246 / 50%);
+  }
+
+  .animation-tilt-stage .animation-shape-tilt {
+    transform: none;
+  }
+
+  .has-scroll-reveal
+    :is([data-reveal], [data-reveal-left], [data-reveal-right]):not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
 }
