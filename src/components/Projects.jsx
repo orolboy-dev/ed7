@@ -2,38 +2,174 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {
   faCartShopping,
+  faCalculator,
   faClock,
   faMobileScreenButton,
+  faPlay,
 } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../LanguageContext';
 
-/* Loyiha ikonkalari, rasmlari va URL'lari shu ro'yxatda tahrir qilinadi. */
+function CalculatorPreview() {
+  return (
+    <div className="calculator-preview">
+      <div className="calculator-preview-header">
+        <span className="calculator-preview-brand">
+          <FontAwesomeIcon aria-hidden="true" icon={faCalculator} />
+          CALCULATOR
+        </span>
+        <span aria-hidden="true" className="calculator-preview-indicator" />
+      </div>
+      <div className="calculator-preview-display">
+        <span>12 × 8</span>
+        <strong>96</strong>
+      </div>
+      <div className="calculator-preview-keys">
+        {['AC', '±', '%', '÷', '7', '8', '9', '×', '4', '5', '6', '−', '1', '2', '3', '+', '0', '.', '='].map((key) => (
+          <span
+            className={[
+              'calculator-preview-key',
+              ['÷', '×', '−', '+'].includes(key) ? 'is-operator' : '',
+              key === '=' ? 'is-equal' : '',
+              key === '0' ? 'is-wide' : '',
+            ].filter(Boolean).join(' ')}
+            key={key}
+          >
+            {key}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Loyiha ikonkalari, preview'lari va URL'lari shu ro'yxatda tahrir qilinadi. */
 const projects = [
   {
     icon: faYoutube,
-    image: '/assets/images/projects/project-1.jpg',
+    preview: 'youtube',
     demoUrl: 'https://orolboy-dev-youtube-clone.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/orolboy-dev-youtube-clone',
   },
   {
     icon: faClock,
-    image: '/assets/images/projects/project-2.jpg',
+    preview: 'clock',
     demoUrl: 'https://soat-topaz.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/soat',
   },
   {
     icon: faMobileScreenButton,
-    image: '/assets/images/projects/project-3.jpg',
+    preview: 'mobile',
     demoUrl: 'https://telhub.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/Demodey',
   },
   {
     icon: faCartShopping,
-    image: '/assets/images/projects/project-4.jpg',
+    preview: 'store',
     demoUrl: '',
     githubUrl: 'https://github.com/orolboy-dev/orolboy-dev-sotibol.uz',
   },
+  {
+    icon: faCalculator,
+    preview: 'calculator',
+    demoUrl: 'https://kalkulyator-blush.vercel.app/',
+    githubUrl: 'https://github.com/orolboy-dev/kalkulyator',
+  },
 ];
+
+function ProjectPreview({ project }) {
+  return (
+    <div
+      aria-hidden={project.preview === 'calculator' ? undefined : true}
+      className={`project-preview project-preview-${project.preview}`}
+    >
+      {project.preview === 'youtube' && (
+        <div className="youtube-preview">
+          <div className="youtube-preview-header">
+            <span className="youtube-preview-brand">
+              <FontAwesomeIcon icon={faYoutube} />
+            </span>
+            <span className="youtube-preview-search" />
+            <span className="youtube-preview-avatar" />
+          </div>
+          <div className="youtube-preview-content">
+            <div className="youtube-preview-sidebar">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="youtube-preview-videos">
+              <div className="youtube-preview-feature">
+                <FontAwesomeIcon icon={faPlay} />
+              </div>
+              <div className="youtube-preview-video">
+                <span />
+                <i />
+                <i />
+              </div>
+              <div className="youtube-preview-video">
+                <span />
+                <i />
+                <i />
+              </div>
+              <div className="youtube-preview-video">
+                <span />
+                <i />
+                <i />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {project.preview === 'clock' && (
+        <div className="clock-preview">
+          <div className="clock-preview-face">
+            <FontAwesomeIcon icon={faClock} />
+          </div>
+          <span className="clock-preview-digital">10:09</span>
+          <span className="clock-preview-caption" />
+        </div>
+      )}
+      {project.preview === 'mobile' && (
+        <div className="mobile-preview">
+          <div className="mobile-preview-phone">
+            <span className="mobile-preview-notch" />
+            <span className="mobile-preview-screen-title" />
+            <span className="mobile-preview-device">
+              <FontAwesomeIcon icon={faMobileScreenButton} />
+            </span>
+            <div className="mobile-preview-products">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+          <div className="mobile-preview-orbit" />
+        </div>
+      )}
+      {project.preview === 'store' && (
+        <div className="store-preview">
+          <div className="store-preview-header">
+            <span />
+            <FontAwesomeIcon icon={faCartShopping} />
+          </div>
+          <div className="store-preview-banner">
+            <span />
+            <i />
+          </div>
+          <div className="store-preview-products">
+            <span><i /></span>
+            <span><i /></span>
+            <span><i /></span>
+          </div>
+        </div>
+      )}
+      {project.preview === 'calculator' && (
+        <CalculatorPreview />
+      )}
+    </div>
+  );
+}
 
 function ProjectCard({ project, index, text }) {
   const revealSide = index % 2 === 0 ? 'data-reveal-left' : 'data-reveal-right';
@@ -42,17 +178,7 @@ function ProjectCard({ project, index, text }) {
       className="group overflow-hidden rounded-2xl border border-white/10 bg-gray-700 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-blue-950/30"
       {...{ [revealSide]: '' }}
     >
-      <div className="aspect-[16/10] overflow-hidden bg-gradient-to-br from-blue-950 via-gray-800 to-gray-900">
-        <img
-          alt={text.imageAlt}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-          loading="lazy"
-          src={project.image}
-          onError={(event) => {
-            event.currentTarget.hidden = true;
-          }}
-        />
-      </div>
+      <ProjectPreview project={project} />
       <div className="p-6">
         <span className="text-sm font-medium text-blue-300">
           {text.project} 0{index + 1}
@@ -126,7 +252,7 @@ function Projects() {
           {projects.map((project, index) => (
             <ProjectCard
               index={index}
-              key={`${project.image}-${index}`}
+              key={`${project.preview}-${index}`}
               project={{
                 ...project,
                 viewLabel: t.projects.view,

@@ -31,12 +31,9 @@ export const translations = {
     about: {
       eyebrow: '01 / Men haqimda',
       title: 'Qisqacha tanishuv',
-      role: 'Frontend / Full-stack Dasturchi',
+      heading: 'Men haqimda',
       portfolio: 'Portfolio',
-      technologies: 'Texnologiyalarim',
-      technologiesLabel: 'Biladigan texnologiyalar',
-      goalTitle: 'Maqsadim',
-      goal: 'Zamonaviy, interaktiv va foydalanuvchilar uchun qulay veb-ilovalar yaratish. Animatsiyalar va 3D elementlar bilan saytlarni jonlantirish.',
+      goal: "Men Jumnazarov O'rolboy, dasturlash sohasida 1 yillik tajribaga ega Frontend dasturchiman. React.js, Tailwind CSS va zamonaviy web texnologiyalar yordamida foydalanuvchilarga qulay, chiroyli va interaktiv interfeyslar yarataman. YouTube Clone, Soat App, TelHub va Sotibol.uz kabi amaliy loyihalar ustida ishlab o'z malakamni oshirganman. Doimiy ravishda yangi texnologiyalarni o'rganish va raqamli olamda foydali mahsulotlar yaratish — mening asosiy maqsadim.",
     },
     skills: {
       eyebrow: "02 / Ko'nikmalar",
@@ -82,10 +79,11 @@ export const translations = {
       missingDemo: "Demo linkini qo'shing",
       missingGithub: 'GitHub linkini qo‘shing',
       items: [
-        { title: 'YouTube Clone', description: 'YouTube veb-ilovasining kloni va zamonaviy interfeysi.', imageAlt: 'YouTube Clone loyihasi ko‘rinishi' },
-        { title: 'Soat App', description: 'Raqamli va interaktiv soat ilovasi.', imageAlt: 'Soat App loyihasi ko‘rinishi' },
-        { title: 'TelHub / Demodey', description: 'Mobil qurilmalar va texnologiyalarga oid veb-loyiha.', imageAlt: 'TelHub / Demodey loyihasi ko‘rinishi' },
-        { title: 'Sotibol', description: 'Sotibol loyihasining GitHub repozitoriysi.', imageAlt: 'Sotibol loyihasi ko‘rinishi' },
+        { title: 'YouTube Clone', description: 'YouTube veb-ilovasining kloni va zamonaviy interfeysi.' },
+        { title: 'Soat App', description: 'Raqamli va interaktiv soat ilovasi.' },
+        { title: 'TelHub / Demodey', description: 'Mobil qurilmalar va texnologiyalarga oid veb-loyiha.' },
+        { title: 'Sotibol', description: 'Sotibol loyihasining GitHub repozitoriysi.' },
+        { title: 'Kalkulyator', description: 'Oddiy amallar uchun qulay va zamonaviy kalkulyator.' },
       ],
     },
     contact: {
@@ -135,12 +133,9 @@ export const translations = {
     about: {
       eyebrow: '01 / Обо мне',
       title: 'Краткое знакомство',
-      role: 'Frontend / Full-stack разработчик',
+      heading: 'Обо мне',
       portfolio: 'Портфолио',
-      technologies: 'Мои технологии',
-      technologiesLabel: 'Технологии, которыми владею',
-      goalTitle: 'Моя цель',
-      goal: 'Создавать современные, интерактивные и удобные для пользователей веб-приложения. Оживлять сайты с помощью анимаций и 3D-элементов.',
+      goal: 'Меня зовут Джумназаров Уролбой, я Frontend-разработчик с годовым опытом в программировании. С помощью React.js, Tailwind CSS и современных веб-технологий я создаю удобные, красивые и интерактивные интерфейсы. Я развиваю свои навыки, работая над практическими проектами, такими как YouTube Clone, Soat App, TelHub и Sotibol.uz. Моя главная цель — постоянно изучать новые технологии и создавать полезные продукты в цифровом мире.',
     },
     skills: {
       eyebrow: '02 / Навыки',
@@ -186,10 +181,11 @@ export const translations = {
       missingDemo: 'Добавьте ссылку на демо',
       missingGithub: 'Добавьте ссылку GitHub',
       items: [
-        { title: 'YouTube Clone', description: 'Клон веб-приложения YouTube с современным интерфейсом.', imageAlt: 'Скриншот проекта YouTube Clone' },
-        { title: 'Soat App', description: 'Цифровое и интерактивное приложение часов.', imageAlt: 'Скриншот проекта Soat App' },
-        { title: 'TelHub / Demodey', description: 'Веб-проект о мобильных устройствах и технологиях.', imageAlt: 'Скриншот проекта TelHub / Demodey' },
-        { title: 'Sotibol', description: 'Репозиторий проекта Sotibol на GitHub.', imageAlt: 'Скриншот проекта Sotibol' },
+        { title: 'YouTube Clone', description: 'Клон веб-приложения YouTube с современным интерфейсом.' },
+        { title: 'Soat App', description: 'Цифровое и интерактивное приложение часов.' },
+        { title: 'TelHub / Demodey', description: 'Веб-проект о мобильных устройствах и технологиях.' },
+        { title: 'Sotibol', description: 'Репозиторий проекта Sotibol на GitHub.' },
+        { title: 'Калькулятор', description: 'Удобный современный калькулятор для повседневных вычислений.' },
       ],
     },
     contact: {
@@ -239,12 +235,9 @@ export const translations = {
     about: {
       eyebrow: '01 / About me',
       title: 'A little introduction',
-      role: 'Frontend / Full-stack Developer',
+      heading: 'About me',
       portfolio: 'Portfolio',
-      technologies: 'My technologies',
-      technologiesLabel: 'Technologies I work with',
-      goalTitle: 'My goal',
-      goal: 'To build modern, interactive, and user-friendly web applications. To bring websites to life with animations and 3D elements.',
+      goal: 'My name is O’rolboy Jumnazarov, and I am a frontend developer with one year of experience in programming. Using React.js, Tailwind CSS, and modern web technologies, I create user-friendly, attractive, and interactive interfaces. I have developed my skills by working on practical projects such as YouTube Clone, Soat App, TelHub, and Sotibol.uz. My main goal is to keep learning new technologies and create useful products in the digital world.',
     },
     skills: {
       eyebrow: '02 / Skills',
@@ -290,10 +283,11 @@ export const translations = {
       missingDemo: 'Add a demo link',
       missingGithub: 'Add a GitHub link',
       items: [
-        { title: 'YouTube Clone', description: 'A YouTube web app clone with a modern interface.', imageAlt: 'YouTube Clone project preview' },
-        { title: 'Soat App', description: 'A digital and interactive clock application.', imageAlt: 'Soat App project preview' },
-        { title: 'TelHub / Demodey', description: 'A web project focused on mobile devices and technology.', imageAlt: 'TelHub / Demodey project preview' },
-        { title: 'Sotibol', description: 'The GitHub repository for the Sotibol project.', imageAlt: 'Sotibol project preview' },
+        { title: 'YouTube Clone', description: 'A YouTube web app clone with a modern interface.' },
+        { title: 'Soat App', description: 'A digital and interactive clock application.' },
+        { title: 'TelHub / Demodey', description: 'A web project focused on mobile devices and technology.' },
+        { title: 'Sotibol', description: 'The GitHub repository for the Sotibol project.' },
+        { title: 'Calculator', description: 'A clean, modern calculator for everyday arithmetic.' },
       ],
     },
     contact: {

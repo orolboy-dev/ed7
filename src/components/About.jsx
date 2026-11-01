@@ -1,17 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 
-const technologies = [
-  'HTML',
-  'CSS',
-  'Tailwind CSS',
-  'JavaScript',
-  'React.js',
-  'Node.js',
-  'GitHub',
-  'Git Bash',
-];
-
 function About() {
   const { t } = useLanguage();
   const goal = t.about.goal;
@@ -48,7 +37,7 @@ function About() {
         if (characterIndex >= goalCharacters.length) {
           window.clearInterval(intervalId);
         }
-      }, 28);
+      }, 12);
     };
 
     if (!('IntersectionObserver' in window)) {
@@ -93,49 +82,32 @@ function About() {
           </h2>
         </div>
 
-        <div className="rounded-3xl bg-gradient-to-br from-blue-300 via-white/70 to-blue-700 p-px shadow-[0_0_40px_rgba(37,99,235,0.16)]">
-          <div className="rounded-[calc(1.5rem-1px)] bg-gray-700 px-6 py-8 sm:px-10 sm:py-10">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full border border-blue-200/30 bg-blue-500/15 px-4 py-2 text-sm font-semibold text-blue-100">
-                {t.about.role}
-              </span>
-              <span className="size-2 rounded-full bg-blue-300 shadow-[0_0_12px_rgba(147,197,253,0.9)]" />
-              <span className="text-sm text-gray-200">{t.about.portfolio}</span>
+        <div className="about-terminal">
+          <div className="about-terminal-titlebar">
+            <div aria-hidden="true" className="about-terminal-controls">
+              <span />
+              <span />
+              <span />
             </div>
+            <span className="about-terminal-title">
+              {t.about.portfolio}
+            </span>
+            <span aria-hidden="true" className="about-terminal-spacer" />
+          </div>
 
-            <div className="mt-8">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-blue-100">
-                {t.about.technologies}
-              </h3>
-              <ul
-                aria-label={t.about.technologiesLabel}
-                className="mt-4 flex flex-wrap gap-2"
-              >
-                {technologies.map((technology) => (
-                  <li
-                    className="rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white"
-                    key={technology}
-                  >
-                    {technology}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 border-t border-white/15 pt-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-blue-100">
-                {t.about.goalTitle}
-              </h3>
+          <div className="about-terminal-body">
+            <h3 className="about-terminal-heading">{t.about.heading}</h3>
+            <div className="about-terminal-output about-terminal-bio">
               <p
                 aria-label={goal}
-                className="mt-3 min-h-20 max-w-4xl text-base leading-8 text-white sm:text-lg"
+                className="min-h-20 text-base leading-8 sm:text-lg"
                 ref={typingTarget}
               >
                 <span aria-hidden="true">{typedText}</span>
                 {typedText.length < goalCharacters.length && (
                   <span
                     aria-hidden="true"
-                    className="typing-caret ml-1 inline-block h-5 w-0.5 translate-y-1 bg-blue-200"
+                    className="typing-caret ml-1 inline-block h-5 w-0.5 translate-y-1 bg-cyan-300"
                   />
                 )}
               </p>
