@@ -47,18 +47,21 @@ const projects = [
   {
     icon: faYoutube,
     preview: 'youtube',
+    image: '/assets/images/projects/youtube-clone.jpg',
     demoUrl: 'https://orolboy-dev-youtube-clone.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/orolboy-dev-youtube-clone',
   },
   {
     icon: faClock,
     preview: 'clock',
+    image: '/assets/images/projects/soat-app.jpg',
     demoUrl: 'https://soat-topaz.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/soat',
   },
   {
     icon: faMobileScreenButton,
     preview: 'mobile',
+    image: '/assets/images/projects/telhub.jpg',
     demoUrl: 'https://telhub.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/Demodey',
   },
@@ -71,18 +74,29 @@ const projects = [
   {
     icon: faCalculator,
     preview: 'calculator',
+    image: '/assets/images/projects/kalkulyator.png',
     demoUrl: 'https://kalkulyator-blush.vercel.app/',
     githubUrl: 'https://github.com/orolboy-dev/kalkulyator',
   },
 ];
 
-function ProjectPreview({ project }) {
+function ProjectPreview({ project, imageAlt }) {
   return (
     <div
-      aria-hidden={project.preview === 'calculator' ? undefined : true}
+      aria-hidden={!project.image || undefined}
       className={`project-preview project-preview-${project.preview}`}
     >
-      {project.preview === 'youtube' && (
+      {project.image && (
+        <img
+          alt={imageAlt}
+          className={`block h-full w-full ${
+            project.preview === 'calculator' ? 'object-contain' : 'object-cover'
+          }`}
+          loading="lazy"
+          src={project.image}
+        />
+      )}
+      {!project.image && project.preview === 'youtube' && (
         <div className="youtube-preview">
           <div className="youtube-preview-header">
             <span className="youtube-preview-brand">
@@ -121,7 +135,7 @@ function ProjectPreview({ project }) {
           </div>
         </div>
       )}
-      {project.preview === 'clock' && (
+      {!project.image && project.preview === 'clock' && (
         <div className="clock-preview">
           <div className="clock-preview-face">
             <FontAwesomeIcon icon={faClock} />
@@ -130,7 +144,7 @@ function ProjectPreview({ project }) {
           <span className="clock-preview-caption" />
         </div>
       )}
-      {project.preview === 'mobile' && (
+      {!project.image && project.preview === 'mobile' && (
         <div className="mobile-preview">
           <div className="mobile-preview-phone">
             <span className="mobile-preview-notch" />
@@ -147,7 +161,7 @@ function ProjectPreview({ project }) {
           <div className="mobile-preview-orbit" />
         </div>
       )}
-      {project.preview === 'store' && (
+      {!project.image && project.preview === 'store' && (
         <div className="store-preview">
           <div className="store-preview-header">
             <span />
@@ -164,7 +178,7 @@ function ProjectPreview({ project }) {
           </div>
         </div>
       )}
-      {project.preview === 'calculator' && (
+      {!project.image && project.preview === 'calculator' && (
         <CalculatorPreview />
       )}
     </div>
@@ -178,7 +192,7 @@ function ProjectCard({ project, index, text }) {
       className="group overflow-hidden rounded-2xl border border-white/10 bg-gray-700 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:border-blue-300/50 hover:shadow-blue-950/30"
       {...{ [revealSide]: '' }}
     >
-      <ProjectPreview project={project} />
+      <ProjectPreview imageAlt={text.imageAlt} project={project} />
       <div className="p-6">
         <span className="text-sm font-medium text-blue-300">
           {text.project} 0{index + 1}

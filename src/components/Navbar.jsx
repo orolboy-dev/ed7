@@ -60,9 +60,9 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-gray-700/90 text-white shadow-lg shadow-black/10 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-1 px-3 py-3 sm:gap-2 sm:px-6 sm:py-4">
         <Link
-          className="shrink-0 text-lg font-bold tracking-tight text-white transition hover:text-blue-200"
+          className="min-w-0 shrink text-[0.8rem] font-bold tracking-tight text-white transition hover:text-blue-200 sm:shrink-0 sm:text-lg"
           to="#home"
           onClick={closeMenu}
         >
@@ -85,11 +85,11 @@ function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-3">
           <button
             aria-label={isLightTheme ? text.darkMode : text.lightMode}
             aria-pressed={isLightTheme}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100 sm:size-10"
             type="button"
             onClick={() => setIsLightTheme((isLight) => !isLight)}
           >
@@ -129,7 +129,7 @@ function Navbar() {
 
           <a
             aria-label={text.github}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100"
+            className="hidden size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100 sm:inline-flex"
             href="https://github.com/orolboy-dev"
             rel="noreferrer"
             target="_blank"
@@ -152,7 +152,7 @@ function Navbar() {
               aria-expanded={languageMenuOpen}
               aria-haspopup="listbox"
               aria-label={`${text.language}: ${language}`}
-              className="inline-flex min-w-[6.25rem] items-center justify-between gap-2 rounded-full border border-blue-200/30 bg-gray-800/90 px-3.5 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(59,130,246,0.12)] outline-none transition duration-200 hover:border-blue-300/70 hover:bg-blue-950/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] focus-visible:ring-2 focus-visible:ring-blue-300"
+              className="inline-flex min-w-[3.5rem] items-center justify-between gap-1 rounded-full border border-blue-200/30 bg-gray-800/90 px-2 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(59,130,246,0.12)] outline-none transition duration-200 hover:border-blue-300/70 hover:bg-blue-950/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] focus-visible:ring-2 focus-visible:ring-blue-300 sm:min-w-[6.25rem] sm:gap-2 sm:px-3.5"
               type="button"
               onClick={() => setLanguageMenuOpen((isOpen) => !isOpen)}
             >
@@ -223,7 +223,7 @@ function Navbar() {
             aria-label={menuOpen ? text.closeMenu : text.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:text-blue-200 md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:text-blue-200 sm:size-10 md:hidden"
             type="button"
             onClick={() => setMenuOpen((isOpen) => !isOpen)}
           >
@@ -262,27 +262,26 @@ function Navbar() {
         </div>
       </div>
 
-      {menuOpen && (
-        <nav
-          aria-label={text.mobileNavigation}
-          className="border-t border-white/10 bg-gray-700/95 px-6 py-4 backdrop-blur-xl md:hidden"
-          id="mobile-navigation"
-        >
-          <ul className="mx-auto flex max-w-6xl flex-col">
-            {links.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  className="block rounded-lg px-3 py-3 text-gray-100 transition hover:bg-white/10 hover:text-blue-200"
-                  to={href}
-                  onClick={closeMenu}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      <nav
+        aria-label={text.mobileNavigation}
+        aria-hidden={!menuOpen}
+        className={`${menuOpen ? 'mobile-navigation-enter' : 'hidden'} border-t border-white/10 bg-gray-700/95 px-4 py-3 backdrop-blur-xl sm:px-6 md:hidden`}
+        id="mobile-navigation"
+      >
+        <ul className="mx-auto flex max-w-6xl flex-col">
+          {links.map(({ href, label }, index) => (
+            <li key={href} style={{ '--menu-item-index': index }}>
+              <Link
+                className="flex min-h-11 items-center rounded-lg px-3 py-2.5 text-gray-100 transition hover:bg-white/10 hover:text-blue-200"
+                to={href}
+                onClick={closeMenu}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

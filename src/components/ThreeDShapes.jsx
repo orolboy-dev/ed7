@@ -8,6 +8,10 @@ function RotatingShape({ type }) {
   const shapeRef = useRef(null);
   const dragState = useRef({ active: false, pointerId: null, x: 0, y: 0 });
   const targetRotation = useRef({ x: -0.25, y: -0.45 });
+  const prefersReducedMotion = useMemo(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    [],
+  );
   const sphereDetails = useMemo(() => {
     if (type !== 'sphere') return [];
 
@@ -38,7 +42,7 @@ function RotatingShape({ type }) {
 
   useFrame((_, delta) => {
     if (!shapeRef.current) return;
-    if (!dragState.current.active) {
+    if (!dragState.current.active && !prefersReducedMotion) {
       targetRotation.current.y += delta * (type === 'sphere' ? 1.1 : 0.55);
     }
 
@@ -148,10 +152,10 @@ function ThreeDShapes({ translations }) {
             <div className="relative h-64">
               <Canvas
                 camera={{ position: [0, 0, 4.5], fov: 40 }}
-                dpr={[1, 1.75]}
+                dpr={[1, 1.5]}
                 gl={{ antialias: true, alpha: true }}
                 onCreated={({ gl }) => gl.setClearColor('#374151', 0)}
-                style={{ touchAction: 'none', cursor: 'grab' }}
+                style={{ touchAction: 'pan-y', cursor: 'grab' }}
               >
                 <ambientLight intensity={0.8} />
                 <directionalLight color="#ffffff" intensity={2.2} position={[3, 4, 5]} />

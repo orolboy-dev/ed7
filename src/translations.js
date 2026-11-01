@@ -79,11 +79,11 @@ export const translations = {
       missingDemo: "Demo linkini qo'shing",
       missingGithub: 'GitHub linkini qo‘shing',
       items: [
-        { title: 'YouTube Clone', description: 'YouTube veb-ilovasining kloni va zamonaviy interfeysi.' },
-        { title: 'Soat App', description: 'Raqamli va interaktiv soat ilovasi.' },
-        { title: 'TelHub / Demodey', description: 'Mobil qurilmalar va texnologiyalarga oid veb-loyiha.' },
+        { title: 'YouTube Clone', description: 'YouTube veb-ilovasining kloni va zamonaviy interfeysi.', imageAlt: 'YouTube Clone loyihasining bosh sahifasi' },
+        { title: 'Soat App', description: 'Raqamli va interaktiv soat ilovasi.', imageAlt: 'Soat App elektron soat interfeysi' },
+        { title: 'TelHub / Demodey', description: 'Mobil qurilmalar va texnologiyalarga oid veb-loyiha.', imageAlt: 'TelHub loyihasining kontaktlar boshqaruv paneli' },
         { title: 'Sotibol', description: 'Sotibol loyihasining GitHub repozitoriysi.' },
-        { title: 'Kalkulyator', description: 'Oddiy amallar uchun qulay va zamonaviy kalkulyator.' },
+        { title: 'Kalkulyator', description: 'Oddiy amallar uchun qulay va zamonaviy kalkulyator.', imageAlt: 'Kalkulyator ilovasi interfeysi' },
       ],
     },
     contact: {
@@ -181,11 +181,11 @@ export const translations = {
       missingDemo: 'Добавьте ссылку на демо',
       missingGithub: 'Добавьте ссылку GitHub',
       items: [
-        { title: 'YouTube Clone', description: 'Клон веб-приложения YouTube с современным интерфейсом.' },
-        { title: 'Soat App', description: 'Цифровое и интерактивное приложение часов.' },
-        { title: 'TelHub / Demodey', description: 'Веб-проект о мобильных устройствах и технологиях.' },
+        { title: 'YouTube Clone', description: 'Клон веб-приложения YouTube с современным интерфейсом.', imageAlt: 'Главная страница проекта YouTube Clone' },
+        { title: 'Soat App', description: 'Цифровое и интерактивное приложение часов.', imageAlt: 'Интерфейс цифровых часов Soat App' },
+        { title: 'TelHub / Demodey', description: 'Веб-проект о мобильных устройствах и технологиях.', imageAlt: 'Панель управления контактами проекта TelHub' },
         { title: 'Sotibol', description: 'Репозиторий проекта Sotibol на GitHub.' },
-        { title: 'Калькулятор', description: 'Удобный современный калькулятор для повседневных вычислений.' },
+        { title: 'Калькулятор', description: 'Удобный современный калькулятор для повседневных вычислений.', imageAlt: 'Интерфейс приложения-калькулятора' },
       ],
     },
     contact: {
@@ -283,11 +283,11 @@ export const translations = {
       missingDemo: 'Add a demo link',
       missingGithub: 'Add a GitHub link',
       items: [
-        { title: 'YouTube Clone', description: 'A YouTube web app clone with a modern interface.' },
-        { title: 'Soat App', description: 'A digital and interactive clock application.' },
-        { title: 'TelHub / Demodey', description: 'A web project focused on mobile devices and technology.' },
+        { title: 'YouTube Clone', description: 'A YouTube web app clone with a modern interface.', imageAlt: 'YouTube Clone project homepage' },
+        { title: 'Soat App', description: 'A digital and interactive clock application.', imageAlt: 'Soat App digital clock interface' },
+        { title: 'TelHub / Demodey', description: 'A web project focused on mobile devices and technology.', imageAlt: 'TelHub contact management dashboard' },
         { title: 'Sotibol', description: 'The GitHub repository for the Sotibol project.' },
-        { title: 'Calculator', description: 'A clean, modern calculator for everyday arithmetic.' },
+        { title: 'Calculator', description: 'A clean, modern calculator for everyday arithmetic.', imageAlt: 'Calculator application interface' },
       ],
     },
     contact: {
