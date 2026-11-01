@@ -1,36 +1,53 @@
 import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 
-/* Aloqa uchun haqiqiy email manzilingizni shu yerga yozing. */
 const CONTACT_EMAIL = 'jumanazarovorol67@gmail.com';
 
 function Contact() {
   const { t } = useLanguage();
   const [formMessage, setFormMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const text = t.contact;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (CONTACT_EMAIL === 'your.email@example.com') {
-      setFormMessage(
-        text.emailNotConfigured,
-      );
-      return;
-    }
-
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const name = formData.get('name');
     const email = formData.get('email');
-    const message = formData.get('message');
-    const subject = encodeURIComponent(`${text.subject}: ${name}`);
-    const body = encodeURIComponent(
-      `${text.nameInBody}: ${name}\n${text.email}: ${email}\n\n${message}`,
-    );
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setFormMessage(text.emailPrepared);
-    event.currentTarget.reset();
+    setIsSending(true);
+    setFormMessage('');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message: formData.get('message'),
+          _subject: `${text.subject}: ${name}`,
+          _replyto: email,
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error(result.message || `Form submission failed (${response.status})`);
+      }
+
+      form.reset();
+      setFormMessage(text.emailSent);
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      setFormMessage(text.emailSendFailed);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -110,12 +127,17 @@ function Contact() {
 
           <button
             className="inline-flex items-center justify-center rounded-full bg-blue-500 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 focus:ring-offset-zinc-900"
+            disabled={isSending}
             type="submit"
           >
-            {text.send}
+            {isSending ? text.sending : text.send}
           </button>
 
-          <p aria-live="polite" className="text-sm text-blue-200" role="status">
+          <p
+            aria-live="polite"
+            className={`text-sm ${formMessage === text.emailSendFailed ? 'text-red-300' : 'text-blue-200'}`}
+            role={formMessage === text.emailSendFailed ? 'alert' : 'status'}
+          >
             {formMessage}
           </p>
         </form>
