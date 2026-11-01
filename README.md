@@ -50,7 +50,7 @@ tailwind.config.js
 
 Loyiha rasmlarini `public/assets/images/projects/project-1.jpg` kabi joylang, so'ng `src/components/Projects.jsx` ichidagi `projects` ro'yxatida sarlavha, tavsif va demo/GitHub URL qiymatlarini kiriting. URL bo'sh bo'lsa, karta havola tugmasi o'rniga eslatma ko'rsatadi.
 
-`src/components/Contact.jsx` dagi aloqa formasi FormSubmit AJAX orqali xabarlarni yuboradi; email ilovasi kerak emas. `CONTACT_FORM_ID` FormSubmit yuborgan tasdiqlash xatidagi maxsus kod bilan mos bo‘lishi kerak. Birinchi yuborishda kelgan tasdiqlash xatidagi `ACTIVATE FORM` tugmasini bosing.
+`src/components/Contact.jsx` dagi aloqa formasi FormSubmit AJAX orqali `CONTACT_EMAIL` manziliga xabar yuboradi; email ilovasi kerak emas. AJAX endpointida email manzili ishlatiladi. FormSubmit yuborgan tasdiqlash xatidagi `ACTIVATE FORM` tugmasini bosing; maxsus kod oddiy HTML formasi uchun.
 
 Styled Components loader animatsiyalari `src/components/animations/AnimationOne.jsx`, `AnimationTwo.jsx` va `AnimationThree.jsx` fayllarida. Ular `Animations.jsx` bo'limida ishlatiladi; uchinchi animatsiya yozuvini `<AnimationThree text="Developer" />` ko'rinishida almashtirish mumkin.
 

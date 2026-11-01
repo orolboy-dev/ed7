@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 
-const CONTACT_FORM_ID = '1aa810d861ca780af98b3b9960b3649b';
+const CONTACT_EMAIL = 'jumanazarovorol67@gmail.com';
 
 function Contact() {
   const { t } = useLanguage();
@@ -20,7 +20,7 @@ function Contact() {
     setFormMessage('');
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_FORM_ID}`, {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
