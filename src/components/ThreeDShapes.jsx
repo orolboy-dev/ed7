@@ -33,21 +33,7 @@ function RotatingShape({ type }) {
         );
       },
     );
-    const equatorPoints = Array.from({ length: 64 }, (_, index) => {
-      const angle = (index / 64) * Math.PI * 2;
-      return new THREE.Vector3(0.99 * Math.cos(angle), 0, 0.99 * Math.sin(angle));
-    });
-
-    return [
-      ...meridians,
-      new THREE.TubeGeometry(
-        new THREE.CatmullRomCurve3(equatorPoints, true),
-        96,
-        0.014,
-        6,
-        true,
-      ),
-    ];
+    return meridians;
   }, [type]);
 
   useFrame((_, delta) => {
@@ -139,7 +125,7 @@ function RotatingShape({ type }) {
         sphereDetails.map((geometry, index) => (
           <mesh key={index} geometry={geometry}>
             <meshBasicMaterial
-              color={index === sphereDetails.length - 1 ? '#bfdbfe' : '#38bdf8'}
+              color="#38bdf8"
               depthWrite={false}
               toneMapped={false}
             />

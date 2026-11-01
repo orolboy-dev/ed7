@@ -10,30 +10,47 @@ const skills = [
   'Node.js',
   'GitHub',
   'Git Bash',
+  'TypeScript',
+  'Next.js',
+  'Express.js',
+  'MongoDB',
+  'REST API',
+  'Vite',
+  'Figma',
+  'Responsive Design',
+  'npm',
+  'Git',
+  'Firebase',
+  'Redux',
 ];
 
 function SkillRow({ direction, items, label }) {
-  const repeatedSkills = [...items, ...items];
-
   return (
     <div
       aria-label={label}
       className="skills-marquee overflow-hidden py-2"
       role="group"
     >
-      <ul
-        className={`skills-marquee-track skills-marquee-${direction} flex w-max gap-3 pr-3`}
+      <div
+        className={`skills-marquee-track skills-marquee-${direction} flex w-max`}
       >
-        {repeatedSkills.map((skill, index) => (
-          <li
-            aria-hidden={index >= items.length}
-            className="rounded-full border border-blue-300/15 bg-white/5 px-5 py-3 text-sm font-medium text-blue-100 shadow-sm shadow-blue-950/20 sm:text-base"
-            key={`${skill}-${index}`}
+        {[false, true].map((isDuplicate) => (
+          <ul
+            aria-hidden={isDuplicate || undefined}
+            className="skills-marquee-set flex shrink-0 gap-3 pr-3"
+            key={String(isDuplicate)}
           >
-            {skill}
-          </li>
+            {items.map((skill, index) => (
+              <li
+                className="rounded-full border border-blue-300/15 bg-white/5 px-5 py-3 text-sm font-medium text-blue-100 shadow-sm shadow-blue-950/20 sm:text-base"
+                key={`${skill}-${index}`}
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
