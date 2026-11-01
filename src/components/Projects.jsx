@@ -68,8 +68,9 @@ const projects = [
   {
     icon: faCartShopping,
     preview: 'store',
-    demoUrl: '',
-    githubUrl: 'https://github.com/orolboy-dev/orolboy-dev-sotibol.uz',
+    image: '/assets/images/projects/sotibol-uz.png',
+    demoUrl: 'https://sotiboluz.vercel.app/',
+    githubUrl: 'https://github.com/orolboy-dev/sotibol.uz',
   },
   {
     icon: faCalculator,
