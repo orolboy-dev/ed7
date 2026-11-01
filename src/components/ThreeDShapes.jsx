@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -8,10 +8,53 @@ function RotatingShape({ type }) {
   const shapeRef = useRef(null);
   const dragState = useRef({ active: false, pointerId: null, x: 0, y: 0 });
   const targetRotation = useRef({ x: -0.25, y: -0.45 });
+  const sphereDetails = useMemo(() => {
+    if (type !== 'sphere') return [];
+
+    const meridians = [0, Math.PI / 2, Math.PI, (Math.PI * 3) / 2].map(
+      (longitude) => {
+        const points = [];
+        for (let index = 0; index <= 48; index += 1) {
+          const latitude = (index / 48 - 0.5) * Math.PI;
+          points.push(
+            new THREE.Vector3(
+              0.99 * Math.cos(latitude) * Math.sin(longitude),
+              0.99 * Math.sin(latitude),
+              0.99 * Math.cos(latitude) * Math.cos(longitude),
+            ),
+          );
+        }
+        return new THREE.TubeGeometry(
+          new THREE.CatmullRomCurve3(points),
+          96,
+          0.012,
+          6,
+          false,
+        );
+      },
+    );
+    const equatorPoints = Array.from({ length: 64 }, (_, index) => {
+      const angle = (index / 64) * Math.PI * 2;
+      return new THREE.Vector3(0.99 * Math.cos(angle), 0, 0.99 * Math.sin(angle));
+    });
+
+    return [
+      ...meridians,
+      new THREE.TubeGeometry(
+        new THREE.CatmullRomCurve3(equatorPoints, true),
+        96,
+        0.014,
+        6,
+        true,
+      ),
+    ];
+  }, [type]);
 
   useFrame((_, delta) => {
     if (!shapeRef.current) return;
-    if (!dragState.current.active) targetRotation.current.y += delta * 0.55;
+    if (!dragState.current.active) {
+      targetRotation.current.y += delta * (type === 'sphere' ? 1.1 : 0.55);
+    }
 
     shapeRef.current.rotation.x +=
       (targetRotation.current.x - shapeRef.current.rotation.x) * 0.12;
@@ -92,6 +135,16 @@ function RotatingShape({ type }) {
           />
         )}
       </mesh>
+      {type === 'sphere' &&
+        sphereDetails.map((geometry, index) => (
+          <mesh key={index} geometry={geometry}>
+            <meshBasicMaterial
+              color={index === sphereDetails.length - 1 ? '#bfdbfe' : '#38bdf8'}
+              depthWrite={false}
+              toneMapped={false}
+            />
+          </mesh>
+        ))}
     </group>
   );
 }

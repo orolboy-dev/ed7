@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+  const [isLightTheme, setIsLightTheme] = useState(
+    () => window.localStorage.getItem('portfolio-theme') === 'light',
+  );
   const languageMenuRef = useRef(null);
   const { currentLang, setCurrentLang, t } = useLanguage();
   const language = currentLang.toUpperCase();
@@ -15,6 +19,12 @@ function Navbar() {
     { href: '#projects', label: text.projects },
     { href: '#contact', label: text.contact },
   ];
+
+  useEffect(() => {
+    const theme = isLightTheme ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('portfolio-theme', theme);
+  }, [isLightTheme]);
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -51,31 +61,72 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-gray-700/90 text-white shadow-lg shadow-black/10 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-        <a
+        <Link
           className="shrink-0 text-lg font-bold tracking-tight text-white transition hover:text-blue-200"
-          href="#home"
+          to="#home"
           onClick={closeMenu}
         >
           {/* O'rolboy jumanazrov*/}
           O'rolboy Jumanazrov<span className="text-blue-300">.</span>
-        </a>
+        </Link>
 
         <nav
           aria-label={text.navigation}
           className="hidden items-center gap-8 text-sm text-gray-100 md:flex"
         >
           {links.map(({ href, label }) => (
-            <a
+            <Link
               className="transition hover:text-blue-200"
-              href={href}
+              to={href}
               key={href}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            aria-label={isLightTheme ? text.darkMode : text.lightMode}
+            aria-pressed={isLightTheme}
+            className="inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100"
+            type="button"
+            onClick={() => setIsLightTheme((isLight) => !isLight)}
+          >
+            {isLightTheme ? (
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 8.5 8.5 0 1 0 20.2 15.3Z"
+                />
+              </svg>
+            ) : (
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+                />
+              </svg>
+            )}
+          </button>
+
           <a
             aria-label={text.github}
             className="inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white transition hover:border-blue-300 hover:bg-blue-400/10 hover:text-blue-100"
@@ -220,13 +271,13 @@ function Navbar() {
           <ul className="mx-auto flex max-w-6xl flex-col">
             {links.map(({ href, label }) => (
               <li key={href}>
-                <a
+                <Link
                   className="block rounded-lg px-3 py-3 text-gray-100 transition hover:bg-white/10 hover:text-blue-200"
-                  href={href}
+                  to={href}
                   onClick={closeMenu}
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

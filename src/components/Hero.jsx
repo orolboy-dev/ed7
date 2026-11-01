@@ -1,4 +1,5 @@
 import profileImage from '../assets/images/profile.png';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
 
 const technologies = [
@@ -54,12 +55,12 @@ function Hero() {
         </ul>
 
         <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
-          <a
+          <Link
             className="inline-flex items-center justify-center rounded-full bg-blue-500 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 focus:ring-offset-zinc-950"
-            href="#contact"
+            to="#contact"
           >
             {t.hero.contact}
-          </a>
+          </Link>
           <a
             className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white transition hover:border-blue-300/60 hover:bg-blue-400/10 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 focus:ring-offset-zinc-950"
             href="/resume.pdf"

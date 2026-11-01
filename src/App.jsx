@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './LanguageContext';
 import About from './components/About';
 import Animations from './components/Animations';
@@ -11,6 +12,22 @@ import Skills from './components/Skills';
 
 function Portfolio() {
   const portfolioRef = useRef(null);
+  const { hash, key } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+  }, [hash, key]);
 
   useEffect(() => {
     const portfolio = portfolioRef.current;
@@ -93,9 +110,11 @@ function Portfolio() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <Portfolio />
-    </LanguageProvider>
+    <BrowserRouter>
+      <LanguageProvider>
+        <Portfolio />
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 
