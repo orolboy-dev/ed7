@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../LanguageContext';
 
 /* Aloqa uchun haqiqiy email manzilingizni shu yerga yozing. */
-const CONTACT_EMAIL = 'your.email@example.com';
+const CONTACT_EMAIL = 'jumanazarovorol67@gmail.com';
 
 function Contact() {
   const { t } = useLanguage();
